@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Wonderland 2.0 ✨</title>
+    <title>Lanskap Berita Digital Indonesia | Sebuah Analisis</title>
     <style>
         :root {
             --pastel-pink: #f8c291;
@@ -12,7 +12,7 @@
             --pastel-green: #a8e6cf;
             --dark-text: #333;
             --light-text: #f9f9f9;
-            --shadow-color: rgba(0,0,0,0.15);
+            --shadow-color: rgba(0,0,0,0.1);
         }
 
         * {
@@ -26,15 +26,12 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
             color: var(--dark-text);
             background: linear-gradient(45deg, var(--pastel-blue), var(--pastel-pink), var(--pastel-green));
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            perspective: 1px;
-            transform-style: preserve-3d;
-            height: 100vh;
-            overflow-y: scroll;
             overflow-x: hidden;
         }
 
@@ -44,13 +41,13 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section & Title Animation --- */
         #particles-js {
             position: fixed;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-color: #3a3a3a; /* Darker bg for particle contrast */
+            background-color: #3a3a3a;
         }
 
         .hero {
@@ -63,36 +60,44 @@
             text-align: center;
             padding: 20px;
             color: var(--light-text);
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             z-index: 1;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 700;
-            letter-spacing: 2px;
-            animation: fadeInDown 1s ease-out;
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+            letter-spacing: 1px;
+            font-size: clamp(2.5rem, 8vw, 5rem);
         }
         
-        .hero-title:hover {
-            transform: scale(1.05) rotate(-2deg);
-            color: var(--pastel-purple);
+        .hero-title .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(-50px) rotate(10deg);
+            animation: title-reveal 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes title-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+            }
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             margin-top: 1rem;
-            animation: fadeInUp 1s ease-out 0.5s;
-            animation-fill-mode: backwards;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s;
+            animation-fill-mode: forwards;
         }
 
         .scroll-down-arrow {
             position: absolute;
             bottom: 30px;
             font-size: 3rem;
-            animation: bounce 2s infinite;
+            animation: bounce 2s infinite 1.5s;
             color: var(--light-text);
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
@@ -103,17 +108,12 @@
             60% { transform: translateY(-15px); }
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- Content Sections --- */
+        
+        /* --- Content Wrapper & Sections --- */
         .content-wrapper {
             position: relative;
             background-color: var(--light-text);
@@ -121,9 +121,11 @@
         }
         
         .content-section {
-            padding: 100px 5%;
-            opacity: 0; /* Hidden for scroll reveal */
-            transform: translateY(50px); /* Start slightly lower */
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
@@ -132,133 +134,148 @@
             transform: translateY(0);
         }
 
-        .parallax-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
-        }
-
-        #section-one {
-            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
-        }
-
-        #section-two {
-             background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1575&q=80');
-        }
-
-        .content-box {
-            background: rgba(0,0,0,0.55);
-            padding: 40px;
-            border-radius: 20px;
+        .content-section h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 30px;
             text-align: center;
-            max-width: 800px;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .content-box:hover {
-            transform: scale(1.03);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .content-box h2 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            margin-bottom: 20px;
-        }
-
-        .content-box p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        /* --- Interactive Grid Section --- */
-        .interactive-section {
-            background: var(--light-text);
-            text-align: center;
-        }
-
-        .interactive-section h2 {
-            font-size: clamp(2.5rem, 7vw, 4rem);
-            margin-bottom: 40px;
             color: var(--dark-text);
             position: relative;
-            display: inline-block;
+            display: block;
+            padding-bottom: 10px;
         }
-        
-        .interactive-section h2::after {
+
+        .content-section h2::after {
             content: '';
             position: absolute;
-            width: 70%;
+            width: 100px;
             height: 4px;
             background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-purple));
-            bottom: -10px;
-            left: 15%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
             border-radius: 2px;
-            transform: scaleX(0);
-            transition: transform 0.5s ease-in-out;
-        }
-        .interactive-section.visible h2::after {
-            transform: scaleX(1);
+            transform-origin: center;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .grid-item {
-            aspect-ratio: 1 / 1;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-            box-shadow: 0 10px 20px var(--shadow-color);
-        }
-
-        .grid-item:nth-child(1) { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
-        .grid-item:nth-child(2) { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
-        .grid-item:nth-child(3) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
-        .grid-item:nth-child(4) { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
-        .grid-item:nth-child(5) { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
-        .grid-item:nth-child(6) { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-
-        .grid-item:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 50px var(--shadow-color);
-            z-index: 10;
+        .content-section.visible h2::after {
+            transform: translateX(-50%) scaleX(1);
         }
         
-        /* --- NEW: Canvas Section --- */
-        .canvas-section {
-            background-color: #222;
-            color: var(--light-text);
+        .content-section .section-intro {
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1rem;
+            color: #555;
         }
-        #interactive-canvas {
-            display: block;
+
+        blockquote {
+            border-left: 4px solid var(--pastel-purple);
+            padding-left: 20px;
+            margin: 30px auto;
+            font-style: italic;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+
+        /* --- NEW: Flip Card Grid --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            min-height: 400px;
+            perspective: 1000px; /* 3D effect */
+        }
+        
+        .flip-card-inner {
+            position: relative;
             width: 100%;
-            height: 500px;
-            cursor: crosshair;
-            margin-top: 30px;
-            background-color: #1a1a1a;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px var(--shadow-color);
             border-radius: 15px;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 15px;
+        }
+        
+        .flip-card-front {
+            background-color: #fff;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+
+        .flip-card-front img {
+            max-width: 80%;
+            max-height: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .flip-card-front h3 {
+            font-size: 1.8rem;
+        }
+
+        .flip-card-back {
+            background-color: #2c3e50;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 25px;
+            text-align: left;
+            overflow-y: auto; /* Scroll for overflow content */
+        }
+
+        .flip-card-back h3 {
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--pastel-green);
+            padding-bottom: 10px;
+        }
+        
+        .flip-card-back p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .flip-card-back .synthesis {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--pastel-pink);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* --- Interactive Chart --- */
+        #chart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            margin-top: 40px;
+            height: 500px; /* Fixed height for consistency */
         }
 
         /* --- Footer --- */
@@ -270,245 +287,286 @@
             position: relative;
             z-index: 5;
         }
-
-        /* --- NEW: Back to Top Button --- */
+        
         #to-top-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--pastel-purple);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s, visibility 0.4s, transform 0.4s ease-in-out;
-            z-index: 1000;
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--pastel-purple); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; z-index: 1000;
         }
-        #to-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #to-top-btn:hover {
-             background: var(--pastel-pink);
-             transform: scale(1.1);
-        }
-
+        #to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        #to-top-btn:hover { background: var(--pastel-pink); transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <div id="particles-js"></div>
     <header class="hero">
-        <h1 class="hero-title">Go Wild.</h1>
-        <p class="hero-subtitle">An Interactive Web Experience 🚀</p>
-        <a href="#section-one" class="scroll-down-arrow">👇</a>
+        <h1 class="hero-title"></h1>
+        <p class="hero-subtitle">Analisis Komparatif Popularitas dan Keandalan 10 Portal Berita Daring Teratas di Indonesia di Era Digital.</p>
+        <a href="#abstract" class="scroll-down-arrow">👇</a>
     </header>
 
     <div class="content-wrapper">
         
-        <section id="section-one" class="parallax-section content-section">
-            <div class="content-box">
-                <h2>Seamless Motion</h2>
-                <p>Scroll down to feel the world move around you. This is a simple parallax effect creating a sense of depth and immersion as you navigate the page.</p>
+        <section id="abstract" class="content-section">
+            <h2>Abstrak</h2>
+            <p class="section-intro">Mari kita petakan hubungan kompleks antara popularitas, yang diukur dari jangkauan audiens, dan keandalan jurnalistik. Dengan pendekatan metode campuran, kita akan mengintegrasikan data kuantitatif dari Reuters Institute dan Ahrefs, serta analisis kualitatif mendalam. Temuan utamanya menunjukkan adanya divergensi signifikan antara popularitas portal dan tingkat keandalannya, menyoroti ketegangan antara imperatif komersial dan tanggung jawab etis dalam menyajikan informasi yang akurat.</p>
+        </section>
+
+        <section id="introduction" class="content-section">
+            <h2>Pendahuluan</h2>
+            <p class="section-intro">Di Indonesia, salah satu negara dengan pengguna internet terbesar di dunia, media daring telah menjadi sumber berita utama bagi 88% masyarakat. Portal berita kini bukan hanya penyampai informasi, tetapi juga penjaga gerbang realitas sosial bagi jutaan orang setiap hari.</p>
+            <blockquote>Dominasi media daring memunculkan sebuah paradoks. Di satu sisi, model bisnisnya mendorong kuantitas dan sensasionalisme. Di sisi lain, fungsi ideal pers menuntut jurnalisme yang kredibel. Ketegangan inilah yang menjadi inti permasalahan.</blockquote>
+        </section>
+
+        <section id="analysis" class="content-section">
+            <h2>Analisis Mendalam 10 Portal Berita Teratas</h2>
+            <p class="section-intro">Arahkan kursor atau sentuh kartu di bawah ini untuk melihat profil, fokus konten, dan evaluasi keandalan dari masing-masing portal berita terpopuler.</p>
+            <div class="card-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://logovector.net/wp-content/uploads/2021/02/detik-logo-vector.png" alt="Logo Detik.com">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Detik.com</h3>
+                            <p>Sebagai pelopor media digital murni di Indonesia (didirikan 1998), Detik.com kini menjadi bagian dari ekosistem media raksasa CT Corp. Model bisnisnya berpusat pada kecepatan dan penyajian berita terkini (breaking news).</p>
+                            <div class="synthesis">
+                                <strong>Sintesis:</strong> Detik.com berhasil memadukan statusnya sebagai pelopor dengan kekuatan konglomerat untuk mendominasi pasar. Keandalannya didukung verifikasi Dewan Pers, namun model bisnisnya yang menekankan kecepatan menciptakan risiko inheren terhadap akurasi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Kompas.com_logo_2022.svg/2560px-Kompas.com_logo_2022.svg.png" alt="Logo Kompas.com">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Kompas.com</h3>
+                            <p>Merupakan perpanjangan digital dari surat kabar nasional Kompas, pilar dari Kompas Gramedia Group. Dengan tagline "Jernih Melihat Dunia", Kompas.com memposisikan diri sebagai sumber informasi yang mendalam dan akurat.</p>
+                            <div class="synthesis">
+                                <strong>Sintesis:</strong> Kompas.com berhasil menjadi teladan dalam mentransformasikan otoritas media cetak ke ranah digital. Komitmennya pada pengecekan fakta menjadikannya salah satu portal berita paling andal di Indonesia.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d Tribunnews.com_logo.svg/1200px-Tribunnews.com_logo.svg.png" alt="Logo Tribunnews.com">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Tribunnews.com</h3>
+                            <p>Bagian dari Kompas Gramedia, namun dengan model berbeda. Tribunnews adalah induk dari jaringan puluhan media daerah, fokus pada konten hiperlokal dalam skala masif, seringkali dengan judul provokatif (clickbait).</p>
+                            <div class="synthesis">
+                                <strong>Sintesis:</strong> Tribunnews.com adalah manifestasi ketegangan antara jangkauan massal dan keandalan. Model bisnisnya yang berorientasi volume sangat sukses secara komersial, namun seringkali mengorbankan kedalaman dan kehati-hatian.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/TvOne_logo.svg/2560px-TvOne_logo.svg.png" alt="Logo tvOne">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>tvOneNews.com</h3>
+                            <p>Portal berita dari stasiun TV tvOne, bagian dari VIVA (Bakrie Group). Fokus pada berita keras, politik, dan hukum dengan gaya yang cenderung dramatis, menargetkan segmen audiens yang lebih konservatif.</p>
+                             <div class="synthesis">
+                                <strong>Sintesis:</strong> Popularitasnya didorong oleh gaya pemberitaan yang tegas, namun keandalannya sering dipertanyakan karena catatan sejarah sengketa pers dan persepsi keberpihakan yang kuat akibat afiliasi dengan Bakrie Group.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CNN_Indonesia_logo.svg/2560px-CNN_Indonesia_logo.svg.png" alt="Logo CNN Indonesia">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>CNNIndonesia.com</h3>
+                            <p>Bagian dari waralaba global CNN, dioperasikan oleh Trans Media (CT Corp). Menggabungkan standar jurnalistik internasional dengan jangkauan sumber daya lokal, fokus pada berita mendalam dan analitis.</p>
+                             <div class="synthesis">
+                                <strong>Sintesis:</strong> Berhasil memadukan kekuatan merek internasional dengan sumber daya lokal untuk menjadi salah satu portal paling kredibel. Fokusnya pada jurnalisme mendalam membangun tingkat kepercayaan publik yang tinggi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Liputan_6_logo.svg/2560px-Liputan_6_logo.svg.png" alt="Logo Liputan 6">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Liputan6.com</h3>
+                            <p>Berasal dari program berita SCTV, kini di bawah Emtek Group. Merupakan salah satu pelopor pengecekan fakta di ruang redaksi media arus utama di Indonesia dengan kanal "Cek Fakta Liputan6.com" yang sangat aktif.</p>
+                            <div class="synthesis">
+                                <strong>Sintesis:</strong> Keunggulan utamanya terletak pada komitmennya yang terdepan dalam bidang pengecekan fakta. Investasi dalam jurnalisme verifikasi telah memberikannya diferensiasi yang jelas dan tingkat kepercayaan yang tinggi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="interactive-section content-section">
-            <h2>Interact With Me!</h2>
-            <div class="grid-container">
-                <div class="grid-item"><span>HOVER</span></div>
-                <div class="grid-item"><span>FEEL</span></div>
-                <div class="grid-item"><span>THE</span></div>
-                <div class="grid-item"><span>MAGIC</span></div>
-                <div class="grid-item"><span>✨</span></div>
-                <div class="grid-item"><span>ENJOY</span></div>
+        <section id="cross-analysis" class="content-section">
+            <h2>Analisis Lintas-Portal & Grafik Interaktif</h2>
+            <p class="section-intro">Ternyata, tidak ada korelasi lurus antara popularitas tertinggi dan keandalan tertinggi. Grafik di bawah ini memvisualisasikan data tersebut. Arahkan kursor untuk melihat detail perbandingan antara popularitas, kepercayaan publik, dan skor keandalan dari setiap portal berita.</p>
+            <div id="chart-container">
+                <canvas id="reliabilityChart"></canvas>
             </div>
-        </section>
-        
-        <section class="canvas-section content-section">
-             <div class="content-box" style="background: rgba(255,255,255,0.1);">
-                <h2>Creative Canvas</h2>
-                <p>Move your mouse over the area below to draw with light. A simple, generative art experience powered by the HTML5 Canvas.</p>
-             </div>
-             <canvas id="interactive-canvas"></canvas>
         </section>
 
-        <section id="section-two" class="parallax-section content-section">
-             <div class="content-box">
-                <h2>Dynamic & Responsive</h2>
-                <p>This entire experience is designed to be fluid and beautiful on any device, from your phone to your desktop computer. Resize the window to see!</p>
-            </div>
+        <section id="conclusion" class="content-section">
+            <h2>Kesimpulan dan Rekomendasi</h2>
+            <p class="section-intro">Lanskap media kita didominasi oleh konglomerat besar dengan strategi portofolio. Meskipun media arus utama krusial dalam melawan hoaks, tekanan komersial tetap menjadi tantangan. Media warisan seperti Kompas dan Tempo berhasil menjadi tolok ukur keandalan di era digital.</p>
+            <h3>Rekomendasi</h3>
+            <blockquote>
+                <strong>Untuk kita, konsumen media:</strong> Kembangkan literasi media kritis, lakukan verifikasi silang, dan kenali model bisnis media yang kita baca. <br><br>
+                <strong>Untuk industri media:</strong> Perkuat investasi pada kualitas, tingkatkan transparansi kepemilikan, dan inovasi model bisnis di luar ketergantungan pada jumlah klik.
+            </blockquote>
         </section>
-        
+
         <footer>
-            <p>&copy; 2025 Interactive Wonderland. Created with ❤️ and code.</p>
+            <p>&copy; 2025 | Dibuat untuk visualisasi lanskap berita digital di Indonesia.</p>
         </footer>
 
     </div>
 
-    <button id="to-top-btn" title="Go to top">↑</button>
+    <button id="to-top-btn" title="Kembali ke atas">↑</button>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // --- Particles.js Configuration ---
-        particlesJS('particles-js', {
-            "particles": {"number": {"value": 80,"density": {"enable": true,"value_area": 800}},"color": {"value": "#ffffff"},"shape": {"type": "circle","stroke": {"width": 0,"color": "#000000"}},"opacity": {"value": 0.5,"random": false,"anim": {"enable": false,"speed": 1,"opacity_min": 0.1,"sync": false}},"size": {"value": 3,"random": true,"anim": {"enable": false,"speed": 40,"size_min": 0.1,"sync": false}},"line_linked": {"enable": true,"distance": 150,"color": "#ffffff","opacity": 0.4,"width": 1},"move": {"enable": true,"speed": 4,"direction": "none","random": false,"straight": false,"out_mode": "out","bounce": false,"attract": {"enable": false,"rotateX": 600,"rotateY": 1200}}},
-            "interactivity": {"detect_on": "canvas","events": {"onhover": {"enable": true,"mode": "grab"},"onclick": {"enable": true,"mode": "push"},"resize": true},"modes": {"grab": {"distance": 140,"line_linked": {"opacity": 1}},"bubble": {"distance": 400,"size": 40,"duration": 2,"opacity": 8,"speed": 3},"repulse": {"distance": 200,"duration": 0.4},"push": {"particles_nb": 4},"remove": {"particles_nb": 2}}},
-            "retina_detect": true
-        });
-
-        // --- Simple Parallax Effect ---
-        window.addEventListener('scroll', function() {
-            const parallaxSections = document.querySelectorAll('.parallax-section');
-            let scrollPosition = window.pageYOffset;
-
-            parallaxSections.forEach(section => {
-                let offset = section.offsetTop;
-                section.style.backgroundPositionY = (scrollPosition - offset) * 0.5 + 'px';
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Smooth Title Animation ---
+            const titleText = "Lanskap Berita Digital Indonesia";
+            const titleContainer = document.querySelector('.hero-title');
+            titleText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = (char === ' ') ? '\u00A0' : char; // Use non-breaking space
+                span.style.animationDelay = `${index * 0.05}s`;
+                titleContainer.appendChild(span);
             });
-        });
-        
-        // --- Fun Mouse Move Interaction for Title ---
-        const heroTitle = document.querySelector('.hero-title');
-        const hero = document.querySelector('.hero');
-        
-        hero.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const { offsetWidth, offsetHeight } = hero;
-            const xMove = (clientX / offsetWidth - 0.5) * 40;
-            const yMove = (clientY / offsetHeight - 0.5) * 40;
-            heroTitle.style.transform = `translate(${xMove}px, ${yMove}px)`;
-        });
-         hero.addEventListener('mouseleave', () => {
-             heroTitle.style.transform = `translate(0px, 0px)`;
-         });
 
-
-        // --- Grid Item Random Color Click ---
-        const gridItems = document.querySelectorAll('.grid-item');
-        gridItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const randomColor1 = `hsl(${Math.random() * 360}, 100%, 85%)`;
-                const randomColor2 = `hsl(${Math.random() * 360}, 100%, 75%)`;
-                item.style.background = `linear-gradient(135deg, ${randomColor1}, ${randomColor2})`;
-                item.style.transform += ' scale(0.9)';
-                setTimeout(() => {
-                    item.style.transform = item.style.transform.replace(' scale(0.9)', '');
-                }, 150);
+            // --- Particles.js Configuration ---
+            particlesJS('particles-js', {
+                "particles": {"number": {"value": 60,"density": {"enable": true,"value_area": 800}},"color": {"value": "#ffffff"},"shape": {"type": "circle"},"opacity": {"value": 0.5,"random": true},"size": {"value": 3,"random": true},"line_linked": {"enable": true,"distance": 150,"color": "#ffffff","opacity": 0.4,"width": 1},"move": {"enable": true,"speed": 2,"direction": "none","random": true,"straight": false,"out_mode": "out","bounce": false}},
+                "interactivity": {"detect_on": "canvas","events": {"onhover": {"enable": true,"mode": "grab"},"onclick": {"enable": true,"mode": "push"},"resize": true},"modes": {"grab": {"distance": 140,"line_linked": {"opacity": 1}},"push": {"particles_nb": 4}}},
+                "retina_detect": true
             });
+
+            // --- Scroll Reveal Logic ---
+            const sections = document.querySelectorAll('.content-section');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => revealObserver.observe(section));
+
+            // --- Back to Top Button Logic ---
+            const toTopBtn = document.getElementById('to-top-btn');
+            window.addEventListener('scroll', () => {
+                toTopBtn.classList.toggle('show', window.pageYOffset > 300);
+            });
+            toTopBtn.addEventListener('click', () => window.scrollTo(0, 0));
+            
+            // --- Interactive Chart Logic ---
+            const chartObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        renderReliabilityChart();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            const chartContainer = document.getElementById('chart-container');
+            if(chartContainer) chartObserver.observe(chartContainer);
         });
         
-        // --- NEW: Interactive Canvas Logic ---
-        const canvas = document.getElementById('interactive-canvas');
-        const ctx = canvas.getContext('2d');
-        let isDrawing = false;
-        let particlesArray = [];
-        
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const mouse = { x: undefined, y: undefined };
-
-        canvas.addEventListener('mousemove', function(event){
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
-            if(isDrawing) {
-                for (let i = 0; i < 3; i++) {
-                    particlesArray.push(new Particle());
-                }
-            }
-        });
-
-        canvas.addEventListener('mousedown', () => isDrawing = true);
-        canvas.addEventListener('mouseup', () => isDrawing = false);
-        canvas.addEventListener('mouseleave', () => isDrawing = false);
-
-        class Particle {
-            constructor(){
-                this.x = mouse.x;
-                this.y = mouse.y;
-                this.size = Math.random() * 8 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-            }
-            update(){
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.1;
-            }
-            draw(){
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function handleParticles(){
-            for (let i = 0; i < particlesArray.length; i++){
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                if (particlesArray[i].size <= 0.3){
-                    particlesArray.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-
-        function animateCanvas(){
-            ctx.fillStyle = 'rgba(0,0,0,0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            handleParticles();
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-        
-        window.addEventListener('resize', () => {
-             canvas.width = canvas.offsetWidth;
-             canvas.height = canvas.offsetHeight;
-        });
-
-        // --- NEW: Scroll Reveal Logic ---
-        const sections = document.querySelectorAll('.content-section');
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+        function renderReliabilityChart() {
+            const ctx = document.getElementById('reliabilityChart').getContext('2d');
+            
+            const labels = ['Detik', 'Kompas', 'Tribun', 'TVOne', 'CNNIndo', 'Liputan6', 'MetroTV', 'Kumparan', 'Tempo', 'SINDO'];
+            const popularityData = [50, 39, 28, 26, 25, 22, 22, 17, 15, 13]; // Pengguna Mingguan (%)
+            const trustData = [65, 65, 32, 30, 66, 25, 28, 21, 19, 13]; // Skor Kepercayaan (Reuters)
+            const reliabilityScore = [3, 5, 2, 2, 5, 5, 2, 3, 5, 1]; // Skor Keandalan (Analisis Kualitatif)
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Popularitas (Pengguna Mingguan)',
+                        data: popularityData,
+                        backgroundColor: 'rgba(213, 166, 232, 0.7)', // pastel-purple
+                        borderColor: 'rgba(213, 166, 232, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                        order: 2,
+                    },{
+                        label: 'Tingkat Kepercayaan Publik',
+                        data: trustData,
+                        backgroundColor: 'rgba(248, 194, 145, 0.7)', // pastel-pink
+                        borderColor: 'rgba(248, 194, 145, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                        order: 3,
+                    }, {
+                        label: 'Skor Keandalan (Analisis)',
+                        data: reliabilityScore,
+                        borderColor: 'rgba(168, 230, 207, 1)', // pastel-green
+                        backgroundColor: 'rgba(168, 230, 207, 1)',
+                        type: 'line',
+                        yAxisID: 'y1',
+                        tension: 0.4,
+                        order: 1,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 1500, easing: 'easeInOutQuart' },
+                    plugins: {
+                        title: { display: true, text: 'Perbandingan Popularitas, Kepercayaan, dan Keandalan', font: { size: 16 } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.dataset.yAxisID === 'y1') {
+                                        label += context.parsed.y + ' / 5';
+                                    } else {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            type: 'linear', position: 'left',
+                            title: { display: true, text: 'Persentase (%) Popularitas & Kepercayaan' },
+                            max: 100, beginAtZero: true
+                        },
+                        y1: {
+                            type: 'linear', position: 'right',
+                            title: { display: true, text: 'Skor Keandalan (dari 5)' },
+                            max: 5, beginAtZero: true,
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
                 }
             });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            revealObserver.observe(section);
-        });
-
-        // --- NEW: Back to Top Button Logic ---
-        const toTopBtn = document.getElementById('to-top-btn');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) { // Show after 300px of scrolling
-                toTopBtn.classList.add('show');
-            } else {
-                toTopBtn.classList.remove('show');
-            }
-        });
-        toTopBtn.addEventListener('click', () => {
-            window.scrollTo(0, 0);
-        });
-
+        }
     </script>
 </body>
 </html>
